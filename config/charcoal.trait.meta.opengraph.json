@@ -1,0 +1,52 @@
+{
+  "properties": {
+    "meta_image": {
+      "type": "image",
+      "accepted_type": "",
+      "upload_path": "uploads/cms_config/images/",
+      "label": {
+        "en": "Featured Image",
+        "fr": "Image en vedette"
+      },
+      "notes": {
+        "en": "A “.png” or “.jpg” file, at least 300×300px, for use with sharing tools (e.g., OpenGraph, Twitter Cards) as a featured image. Image must be less than 1MB in size.",
+        "fr": "Un fichier “.png” ou “.jpg” d‘au moins 300×300px, pour des outils de partage (ex., OpenGraph, Twitter Cards) comme une image vedette. L‘image doit être inférieure à 1 Mo en taille."
+      }
+    },
+    "meta_type": {
+      "type": "cms_opengraph_type",
+      "allow_null": false,
+      "input_type": "grouped_select",
+      "hidden": true,
+      "label": {
+        "en": "Content Type",
+        "fr": "Type Content"
+      },
+      "description": {
+        "en": "The meta-type can be used to specify the page type in opengraphs.",
+        "fr": "Le méta-type peut être utilisé pour spécifiéer le type de page dans les tags opengraphs."
+      }
+    }
+  },
+  "data": {
+    "meta_type": "website"
+  },
+  "forms": {
+    "admin.cms_site": {
+      "groups": {
+        "meta-opengraph": {
+          "label": {
+            "en": "Meta Information (OpenGraph)",
+            "fr": "Informations Méta (OpenGraph)"
+          },
+          "properties": [
+            "meta_type",
+            "meta_image"
+          ],
+          "priority": 501
+        }
+      }
+    }
+  },
+  "default_form": "admin.cms_site"
+}
