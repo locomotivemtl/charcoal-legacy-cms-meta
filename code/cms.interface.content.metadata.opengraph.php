@@ -11,13 +11,15 @@
  * @author    Chauncey McAskill <chauncey@locomotive.ca>
  */
 
-namespace Charcoal\CMS;
+namespace CMS;
 
 /**
  * Interface: OpenGraph Metadata
+ *
+ * @package CMS\Objects
  */
 
-interface Interface_Meta_OpenGraph
+interface Interface_Content_Metadata_OpenGraph
 {
     /**
      * Generate a collection of OpenGraph meta tags from

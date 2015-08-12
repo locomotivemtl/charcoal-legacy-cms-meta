@@ -13,13 +13,15 @@
  * @since       Version 2014-09-08
  */
 
-namespace Charcoal\CMS;
+namespace CMS;
 
 /**
  * Trait: Basic Metadata
+ *
+ * @package CMS\Objects
  */
 
-trait Trait_Meta_Basic
+trait Trait_Content_Metadata_Basic
 {
     /**
      * Meta Data Properties
@@ -29,8 +31,6 @@ trait Trait_Meta_Basic
      * @var string  $meta_title_suffix  Property_String / l10n
      * @var string  $meta_description   Property_String / l10n
      * @var string  $meta_keywords      Property_String / l10n
-     * @var string  $meta_author_name   Property_String / l10n
-     * @var string  $meta_author_url    Property_URL / l10n
      */
 
     public $meta_title;
@@ -38,8 +38,6 @@ trait Trait_Meta_Basic
     public $meta_title_suffix;
     public $meta_description;
     public $meta_keywords;
-    public $meta_author_name;
-    public $meta_author_url;
 
     /**
      * Get the meta-tags HTML, to put in the header.

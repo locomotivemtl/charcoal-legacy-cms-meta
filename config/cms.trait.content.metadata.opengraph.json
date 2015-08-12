@@ -3,7 +3,7 @@
     "meta_image": {
       "type": "image",
       "accepted_type": "",
-      "upload_path": "uploads/cms_config/images/",
+      "upload_path": "uploads/config/images/",
       "label": {
         "en": "Featured Image",
         "fr": "Image en vedette"
@@ -32,7 +32,7 @@
     "meta_type": "website"
   },
   "forms": {
-    "admin.cms_site": {
+    "admin": {
       "groups": {
         "meta-opengraph": {
           "label": {
@@ -43,10 +43,10 @@
             "meta_type",
             "meta_image"
           ],
-          "priority": 501
+          "priority": 510
         }
       }
     }
   },
-  "default_form": "admin.cms_site"
+  "default_form": "admin"
 }

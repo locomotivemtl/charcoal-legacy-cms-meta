@@ -3,6 +3,17 @@ Charcoal CMS Metadata Extension
 
 A CMS module extension that provides an interface for content-level metadata information.
 
+## Supported Social Data
+
+* Basic Metadata
+  * Title
+  * Description
+  * Keywords
+  * Author
+* OpenGraph
+  * Image
+  * Type
+
 ## Installation
 
 #### With Composer

@@ -1,7 +1,7 @@
 <?php
 
-use \Charcoal\CMS\Trait_Meta_Basic as Trait_Meta_Basic;
-use \Charcoal\CMS\Trait_Meta_OpenGraph as Trait_Meta_OpenGraph;
+use \CMS\Trait_Content_Metadata_Basic as Trait_Metadata_Basic;
+use \CMS\Trait_Content_Metadata_OpenGraph as Trait_Metadata_OpenGraph;
 
 /**
  * Trait: Boilerplate Document Metadata
@@ -12,13 +12,13 @@ use \Charcoal\CMS\Trait_Meta_OpenGraph as Trait_Meta_OpenGraph;
  * 1. Values are stripped of HTML and escaped for HTML attributes.
  * 2. Values are unescaped and will include any HTML present.
  *
- * @package Charcoal\Boilerplate
+ * @package Boilerplate
  */
 
-trait Boilerplate_Trait_Meta
+trait Boilerplate_Trait_Content_Metadata
 {
-    use Trait_Meta_Basic,
-        Trait_Meta_OpenGraph;
+    use Trait_Metadata_Basic,
+        Trait_Metadata_OpenGraph;
 
     /**
      * Get the meta-tags HTML, to put in the header.

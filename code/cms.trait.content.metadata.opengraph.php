@@ -11,13 +11,15 @@
  * @author    Chauncey McAskill <chauncey@locomotive.ca>
  */
 
-namespace Charcoal\CMS;
+namespace CMS;
 
 /**
  * Trait: OpenGraph Metadata
+ *
+ * @package CMS\Objects
  */
 
-trait Trait_Meta_OpenGraph
+trait Trait_Content_Metadata_OpenGraph
 {
 
     /**

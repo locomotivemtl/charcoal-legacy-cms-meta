@@ -13,13 +13,15 @@
  * @since       Version 2014-09-28
  */
 
-namespace Charcoal\CMS;
+namespace CMS;
 
 /**
  * Interface: Basic Metadata
+ *
+ * @package CMS\Objects
  */
 
-interface Interface_Meta_Basic
+interface Interface_Content_Metadata_Basic
 {
     /**
      * Generate the HTML meta tags from a Mustache template,
@@ -53,20 +55,4 @@ interface Interface_Meta_Basic
      */
 
     public function meta_keywords();
-
-    /**
-     * Retrieve document's author's name.
-     *
-     * @return string Property_String
-     */
-
-    public function meta_author_name();
-
-    /**
-     * Retrieve document's author's URL.
-     *
-     * @return string Property_URL
-     */
-
-    public function meta_author_url();
 }

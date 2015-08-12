@@ -48,28 +48,12 @@
         "en": "Note that for some SEO reason, it might be preferred to leave the default meta-keywords blank. Most search engines will ignore keywords that are not found in the website content (or downright penalize a site's search ranking).",
         "fr": "Noter que certaines des meilleurs pratiques d'optimisation pour les moteurs de recherche (SEO) proscrivent l'utilisation de mots-clés méta par défaut. Effectivement, plusieurs moteurs vont ignorer les mots-clés qui ne se retrouvent pas dans le contenu d'une page (ou vont carrément pénaliser la position d'un site dans ses résultats)"
       }
-    },
-    "meta_author_name": {
-      "type": "string",
-      "l10n": true,
-      "label": {
-        "en": "Author's Name",
-        "fr": "Nom de l'Auteur"
-      }
-    },
-    "meta_author_url": {
-      "type": "url",
-      "l10n": true,
-      "label": {
-        "en": "Author's URL",
-        "fr": "URL de l'Auteur"
-      }
     }
   },
   "forms": {
-    "admin.cms_site": {
+    "admin": {
       "groups": {
-        "meta-basic": {
+        "meta_basic": {
           "label": {
             "en": "Meta Data",
             "fr": "Informations Méta"
@@ -81,15 +65,12 @@
           "properties": [
             "meta_title",
             "meta_keywords",
-            "meta_description",
-            "|",
-            "meta_author_name",
-            "meta_author_url"
+            "meta_description"
           ],
           "priority": 500
         }
       }
     }
   },
-  "default_form": "admin.cms_site"
+  "default_form": "admin"
 }
