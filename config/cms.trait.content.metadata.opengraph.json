@@ -3,7 +3,7 @@
     "meta_image": {
       "type": "image",
       "accepted_type": "",
-      "upload_path": "uploads/config/images/",
+      "upload_path": "uploads/metadata/images/",
       "label": {
         "en": "Featured Image",
         "fr": "Image en vedette"
@@ -43,7 +43,7 @@
             "meta_type",
             "meta_image"
           ],
-          "priority": 510
+          "priority": 110
         }
       }
     }

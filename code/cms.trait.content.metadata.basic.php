@@ -27,15 +27,11 @@ trait Trait_Content_Metadata_Basic
      * Meta Data Properties
      *
      * @var string  $meta_title         Property_String / l10n
-     * @var string  $meta_title_prefix  Property_String / l10n
-     * @var string  $meta_title_suffix  Property_String / l10n
      * @var string  $meta_description   Property_String / l10n
      * @var string  $meta_keywords      Property_String / l10n
      */
 
     public $meta_title;
-    public $meta_title_prefix;
-    public $meta_title_suffix;
     public $meta_description;
     public $meta_keywords;
 

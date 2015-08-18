@@ -8,22 +8,6 @@
         "fr": "Titre du site"
       }
     },
-    "meta_title_prefix": {
-      "type": "string",
-      "l10n": true,
-      "label": {
-        "en": "Site Title Prefix",
-        "fr": "Préfix au titre du site"
-      }
-    },
-    "meta_title_suffix": {
-      "type": "string",
-      "l10n": true,
-      "label": {
-        "en": "Site Title Suffix",
-        "fr": "Suffix au titre du site"
-      }
-    },
     "meta_description": {
       "type": "text",
       "l10n": true,
@@ -67,7 +51,7 @@
             "meta_keywords",
             "meta_description"
           ],
-          "priority": 500
+          "priority": 100
         }
       }
     }
