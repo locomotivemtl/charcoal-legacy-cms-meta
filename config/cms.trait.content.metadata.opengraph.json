@@ -20,7 +20,7 @@
       "hidden": true,
       "label": {
         "en": "Content Type",
-        "fr": "Type Content"
+        "fr": "Type de contenu"
       },
       "description": {
         "en": "The meta-type can be used to specify the page type in opengraphs.",

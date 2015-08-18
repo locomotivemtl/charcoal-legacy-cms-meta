@@ -4,16 +4,16 @@
       "type": "text",
       "l10n": true,
       "label": {
-        "en": "Site Title",
-        "fr": "Titre du site"
+        "en": "Title",
+        "fr": "Titre"
       }
     },
     "meta_description": {
       "type": "text",
       "l10n": true,
       "label": {
-        "en": "Site Description",
-        "fr": "Description du site"
+        "en": "Description",
+        "fr": "Description"
       },
       "description": {
         "en": "In a few words, explain what your site is about. This is used as the default meta-description. Note that for some SEO reason, it might be preferred to leave the default meta-description blank (and let the crawlers determine content according to search query). Duplicate description for the same website is discouraged, so a default value might not be desirable. Optimal description should be around 150-160 characters.",
@@ -25,8 +25,8 @@
       "l10n": true,
       "multiple": false,
       "label": {
-        "en": "Site keywords",
-        "fr": "Mots-clés du site"
+        "en": "Keywords",
+        "fr": "Mots-clés"
       },
       "description": {
         "en": "Note that for some SEO reason, it might be preferred to leave the default meta-keywords blank. Most search engines will ignore keywords that are not found in the website content (or downright penalize a site's search ranking).",
