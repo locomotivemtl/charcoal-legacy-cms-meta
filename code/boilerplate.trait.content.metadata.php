@@ -51,7 +51,7 @@ trait Boilerplate_Trait_Content_Metadata
 		$config  = $this->cfg();
 		$context = $this->context();
 
-		if ( $context->id() && $this::has_meta_interface( $context ) ) {
+		if ( $context->id() && $this::has_metadata_basic_interface( $context ) ) {
 			$output = $context->document_title();
 		}
 
@@ -103,7 +103,7 @@ trait Boilerplate_Trait_Content_Metadata
 
 	public function meta_title()
 	{
-		$output = $this->get_meta_value( __FUNCTION__ );
+		$output = $this->get_context_meta_value( __FUNCTION__ );
 
 		return ( $output === $this->meta_site_name() ? false : $output );
 	}
@@ -117,7 +117,7 @@ trait Boilerplate_Trait_Content_Metadata
 
 	public function meta_description()
 	{
-		return $this->get_meta_value( __FUNCTION__ );
+		return $this->get_context_meta_value( __FUNCTION__ );
 	}
 
 	/**
@@ -129,7 +129,7 @@ trait Boilerplate_Trait_Content_Metadata
 
 	public function meta_keywords()
 	{
-		return $this->get_meta_value( __FUNCTION__ );
+		return $this->get_context_meta_value( __FUNCTION__ );
 	}
 
 	/**
@@ -143,31 +143,7 @@ trait Boilerplate_Trait_Content_Metadata
 
 	public function meta_image()
 	{
-		return $this->get_meta_value( __FUNCTION__ );
-	}
-
-	/**
-	 * Retrieve the value of a given meta-property.
-	 *
-	 * @return string Value of metadata, {@see [1]}.
-	 * @see    Interface_Meta_Basic
-	 */
-
-	private function get_meta_value( $property_name )
-	{
-		$output  = '';
-		$config  = $this->cfg();
-		$context = $this->context();
-
-		if ( $context->id() && $this::has_meta_interface( $context ) ) {
-			$output = $context->{ $property_name }();
-		}
-
-		if ( empty( $output ) ) {
-			$output = trim_words( $config->p( $property_name )->text() );
-		}
-
-		return htmlspecialchars( strip_tags( $output ), ENT_QUOTES );
+		return $this->get_context_meta_value( __FUNCTION__ );
 	}
 
 	/**
@@ -179,7 +155,7 @@ trait Boilerplate_Trait_Content_Metadata
 
 	public function meta_author_name()
 	{
-		return $this->cfg()->p('meta_author_name')->text();
+		return $this->get_context_meta_value( __FUNCTION__ );
 	}
 
 	/**
@@ -191,7 +167,7 @@ trait Boilerplate_Trait_Content_Metadata
 
 	public function meta_author_url()
 	{
-		return $this->cfg()->p('meta_author_url')->text();
+		return $this->get_context_meta_value( __FUNCTION__ );
 	}
 
 	/**
@@ -204,7 +180,49 @@ trait Boilerplate_Trait_Content_Metadata
 
 	public function meta_type()
 	{
-		return $this->cfg()->p('meta_type')->text();
+		return $this->get_context_meta_value( __FUNCTION__ );
 	}
 
+	/**
+	 * Retrieve the value of a given meta-property.
+	 *
+	 * @return string Value of metadata, {@see [1]}.
+	 * @see    Interface_Meta_Basic
+	 */
+
+	private function get_config_meta_value( $property_name )
+	{
+		$output = '';
+
+		$prop = $this->cfg()->p( $property_name );
+
+		if ( $prop ) {
+			$output = $prop->text();
+		}
+
+		return $output;
+	}
+
+	/**
+	 * Retrieve the value of a given meta-property.
+	 *
+	 * @return string Value of metadata, {@see [1]}.
+	 * @see    Interface_Meta_Basic
+	 */
+
+	private function get_context_meta_value( $property_name )
+	{
+		$output  = '';
+		$context = $this->context();
+
+		if ( $context->id() && $this::has_metadata_basic_interface( $context ) ) {
+			$output = $context->{ $property_name }();
+		}
+
+		if ( empty( $output ) ) {
+			$output = $this->get_config_meta_value( $property_name );
+		}
+
+		return htmlspecialchars( strip_tags( $output ), ENT_QUOTES );
+	}
 }

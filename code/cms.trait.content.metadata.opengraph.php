@@ -42,10 +42,11 @@ trait Trait_Content_Metadata_OpenGraph
 	public function as_html_og_tags()
 	{
 		$replacements = [
-			'obj' => $this
+			'obj'     => $this,
+			'in_dev'  => \Charcoal::$config['dev_mode']
 		];
 
-		$tpl = \Charcoal_Template::get( 'meta-opengraph', $replacements );
+		$tpl = \Charcoal_Template::get( 'widget.cms.metadata.opengraph', $replacements );
 		$tpl->set_template('{{#obj.meta_type}}
 		<meta property="og:type"        content="{{obj.meta_type}}" />
 {{/obj.meta_type}}
@@ -68,13 +69,23 @@ trait Trait_Content_Metadata_OpenGraph
 	}
 
 	/**
-	 * Is the object an instance of Interface_Meta_OpenGraph?
+	 * Does the object use this trait.
 	 *
 	 * @return boolean
 	 */
-	public static function has_og_interface( \Charcoal_Base $object )
+	public static function has_metadata_og()
 	{
-		return ( is_object( $object ) && $object instanceof Interface_Meta_OpenGraph );
+		return true;
+	}
+
+	/**
+	 * Is the object an instance of Interface_Content_Metadata_OpenGraph?
+	 *
+	 * @return boolean
+	 */
+	public static function has_metadata_og_interface( \Charcoal_Base $object )
+	{
+		return ( is_object( $object ) && $object instanceof Interface_Content_Metadata_OpenGraph );
 	}
 
 	/**

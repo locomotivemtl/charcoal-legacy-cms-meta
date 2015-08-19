@@ -55,40 +55,39 @@ trait Trait_Content_Metadata_Basic
 	public function as_html_meta_tags()
 	{
 		$replacements = [
-			'obj'     => $this,
-			'charset' => 'UTF-8',
-			'in_dev'  => \Charcoal::$config['dev_mode']
+			'obj'    => $this,
+			'in_dev' => \Charcoal::$config['dev_mode']
 		];
 
-		$tpl = \Charcoal_Template::get( 'meta-data', $replacements );
-		$tpl->set_template('<meta charset="UTF-8">
-{{#obj.document_title}}
-
-		<title>{{obj.document_title}}</title>
+		$tpl = \Charcoal_Template::get( 'widget.cms.metadata.basic', $replacements );
+		$tpl->set_template('{{#obj.document_title}}<title>{{obj.document_title}}</title>
 {{/obj.document_title}}
 {{#obj.meta_description}}
 
 		<meta name="description" content="{{obj.meta_description}}" />
-{{/obj.meta_description}}
-{{#obj.meta_author_name}}
-
-		<meta name="author" content="{{obj.meta_author_name}}" />
-{{/obj.meta_author_name}}
-{{#obj.meta_author_url}}
-
-		<link rel="author" href="{{obj.meta_author_url}}" />{{/obj.meta_author_url}}');
+{{/obj.meta_description}}');
 
 		return $tpl->render();
 	}
 
 	/**
-	 * Is the object an instance of Interface_Meta?
+	 * Does the object use this trait.
 	 *
 	 * @return boolean
 	 */
-	public static function has_meta_interface( \Charcoal_Base $object )
+	public static function has_metadata_basic()
 	{
-		return ( is_object( $object ) && $object instanceof Interface_Meta );
+		return true;
+	}
+
+	/**
+	 * Is the object an instance of Interface_Content_Metadata_Basic?
+	 *
+	 * @return boolean
+	 */
+	public static function has_metadata_basic_interface( \Charcoal_Base $object )
+	{
+		return ( is_object( $object ) && $object instanceof Interface_Content_Metadata_Basic );
 	}
 
 	/**
