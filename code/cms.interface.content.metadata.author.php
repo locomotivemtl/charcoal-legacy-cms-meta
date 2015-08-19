@@ -23,19 +23,19 @@ namespace CMS;
 
 interface Interface_Content_Metadata_Author
 {
-    /**
-     * Retrieve document's author's name.
-     *
-     * @return string Property_String
-     */
+	/**
+	 * Retrieve document's author's name.
+	 *
+	 * @return string Property_String
+	 */
 
-    public function meta_author_name();
+	public function meta_author_name();
 
-    /**
-     * Retrieve document's author's URL.
-     *
-     * @return string Property_URL
-     */
+	/**
+	 * Retrieve document's author's URL.
+	 *
+	 * @return string Property_URL
+	 */
 
-    public function meta_author_url();
+	public function meta_author_url();
 }
