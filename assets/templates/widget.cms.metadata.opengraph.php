@@ -4,7 +4,7 @@
 
 	@see CMS\Trait_Content_Metadata_OpenGraph
 }}
-{{#has_metadata_og}}
+{{#has_og_metadata_trait}}
 {{#meta_type}}
 <meta property="og:type"        content="{{meta_type}}" />
 {{/meta_type}}
@@ -23,4 +23,4 @@
 {{#meta_site_name}}
 <meta property="og:site_name"   content="{{meta_site_name}}" />
 {{/meta_site_name}}
-{{/has_metadata_og}}
+{{/has_og_metadata_trait}}

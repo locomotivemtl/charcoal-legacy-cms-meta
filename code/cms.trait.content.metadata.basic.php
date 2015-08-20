@@ -3,14 +3,10 @@
 /**
  * File: Basic Metadata Charcoal Trait
  *
- * @copyright   2015 Locomotive
- * @license     LGPL <https://www.gnu.org/licenses/lgpl.html>
- * @link        http://charcoal.locomotive.ca
- *
- * @author      Mathieu Ducharme <mat@locomotive.ca>
- * @author      Chauncey McAskill <chauncey@locomotive.ca>
- *
- * @since       Version 2014-09-08
+ * @copyright 2015 Locomotive
+ * @license   LGPL <https://www.gnu.org/licenses/lgpl.html>
+ * @link      http://charcoal.locomotive.ca
+ * @author    Chauncey McAskill <chauncey@locomotive.ca>
  */
 
 namespace CMS;
@@ -20,62 +16,30 @@ namespace CMS;
  *
  * @package CMS\Objects
  */
-
 trait Trait_Content_Metadata_Basic
 {
 	/**
-	 * Meta Data Properties
+	 * Object Title Metadata
 	 *
-	 * @var string  $meta_title         Property_String / l10n
-	 * @var string  $meta_description   Property_String / l10n
-	 * @var string  $meta_keywords      Property_String / l10n
+	 * @var  string
+	 * @see  Property_String (L10N)
 	 */
-
 	public $meta_title;
+
+	/**
+	 * Object Description Metadata
+	 *
+	 * @var  string
+	 * @see  Property_Text (L10N)
+	 */
 	public $meta_description;
-	public $meta_keywords;
-
-	/**
-	 * Get the meta-tags HTML, to put in the header.
-	 *
-	 * @return string
-	 */
-	public function meta_tags_html()
-	{
-		return $this->as_html_meta_tags();
-	}
-
-	/**
-	 * Generate the HTML meta tags from a Mustache template,
-	 * to put in the `<head>`.
-	 *
-	 * @return string
-	 * @see    \Charcoal\Interface_Meta
-	 */
-	public function as_html_meta_tags()
-	{
-		$replacements = [
-			'obj'    => $this,
-			'in_dev' => \Charcoal::$config['dev_mode']
-		];
-
-		$tpl = \Charcoal_Template::get( 'widget.cms.metadata.basic', $replacements );
-		$tpl->set_template('{{#obj.document_title}}<title>{{obj.document_title}}</title>
-{{/obj.document_title}}
-{{#obj.meta_description}}
-
-		<meta name="description" content="{{obj.meta_description}}" />
-{{/obj.meta_description}}');
-
-		return $tpl->render();
-	}
 
 	/**
 	 * Does the object use this trait.
 	 *
 	 * @return boolean
 	 */
-	public static function has_metadata_basic()
+	public static function has_basic_metadata_trait()
 	{
 		return true;
 	}
@@ -85,69 +49,24 @@ trait Trait_Content_Metadata_Basic
 	 *
 	 * @return boolean
 	 */
-	public static function has_metadata_basic_interface( \Charcoal_Base $object )
+	public static function has_basic_metadata_interface( \Charcoal_Base $object )
 	{
 		return ( is_object( $object ) && $object instanceof Interface_Content_Metadata_Basic );
 	}
 
 	/**
-	 * Retrieve the document's title,
-	 * for the `<title>` element.
-	 *
-	 * @return string Property_String
-	 * @see    \Charcoal\Interface_Meta
+	 * {@inheritdoc}
 	 */
-
-	public function document_title()
+	public function meta_title()
 	{
 		return $this->p('meta_title')->text();
 	}
 
 	/**
-	 * Retrieve the document's description.
-	 *
-	 * @return string Property_String
-	 * @see    \Charcoal\Interface_Meta
+	 * {@inheritdoc}
 	 */
-
 	public function meta_description()
 	{
 		return $this->p('meta_description')->text();
-	}
-
-	/**
-	 * Retrieve the document's keywords.
-	 *
-	 * @return string Property_String
-	 * @see    \Charcoal\Interface_Meta
-	 */
-
-	public function meta_keywords()
-	{
-		return $this->p('meta_keywords')->text();
-	}
-
-	/**
-	 * Retrieve document's author's name.
-	 *
-	 * @return string Property_String
-	 * @see    \Charcoal\Interface_Meta
-	 */
-
-	public function meta_author_name()
-	{
-		return $this->p('meta_author_name')->text();
-	}
-
-	/**
-	 * Retrieve document's author's URL.
-	 *
-	 * @return string Property_URL
-	 * @see    \Charcoal\Interface_Meta
-	 */
-
-	public function meta_author_url()
-	{
-		return $this->p('meta_author_url')->text();
 	}
 }

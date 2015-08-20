@@ -2,7 +2,7 @@
   "properties": {
     "meta_author_name": {
       "type": "string",
-      "l10n": true,
+      "l10n": false,
       "label": {
         "en": "Author's Name",
         "fr": "Nom de l'Auteur"
@@ -20,24 +20,22 @@
   "forms": {
     "admin": {
       "groups": {
-        "meta-basic": {
+        "meta-author": {
           "label": {
-            "en": "Meta Data",
-            "fr": "Informations Méta"
+            "en": "Metadata (Author)",
+            "fr": "Méta-données (Auteur)"
           },
           "l10n": true,
           "l10n_options": {
             "mode": "loop_group"
           },
           "properties": [
-            "|",
             "meta_author_name",
             "meta_author_url"
           ],
-          "priority": 101
+          "priority": 105
         }
       }
     }
-  },
-  "default_form": "admin"
+  }
 }

@@ -1,0 +1,37 @@
+{
+  "properties": {
+    "meta_keywords": {
+      "type": "string",
+      "l10n": true,
+      "multiple": false,
+      "label": {
+        "en": "Keywords",
+        "fr": "Mots-clés"
+      },
+      "description": {
+        "en": "Note that for some SEO reason, it might be preferred to leave the default meta-keywords blank. Most search engines will ignore keywords that are not found in the website content (or downright penalize a site's search ranking).",
+        "fr": "Noter que certaines des meilleurs pratiques d'optimisation pour les moteurs de recherche (SEO) proscrivent l'utilisation de mots-clés méta par défaut. Effectivement, plusieurs moteurs vont ignorer les mots-clés qui ne se retrouvent pas dans le contenu d'une page (ou vont carrément pénaliser la position d'un site dans ses résultats)"
+      }
+    }
+  },
+  "forms": {
+    "admin": {
+      "groups": {
+        "meta-basic": {
+          "label": {
+            "en": "Metadata",
+            "fr": "Méta-données"
+          },
+          "l10n": true,
+          "l10n_options": {
+            "mode": "loop_group"
+          },
+          "properties": [
+            "meta_keywords"
+          ],
+          "priority": 100
+        }
+      }
+    }
+  }
+}

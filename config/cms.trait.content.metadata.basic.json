@@ -19,28 +19,15 @@
         "en": "In a few words, explain what your site is about. This is used as the default meta-description. Note that for some SEO reason, it might be preferred to leave the default meta-description blank (and let the crawlers determine content according to search query). Duplicate description for the same website is discouraged, so a default value might not be desirable. Optimal description should be around 150-160 characters.",
         "fr": "En quelques mots, expliquez ce qu‘est votre site. Description-méta par défaut. Noter que certaines meilleures pratiques d'optimisation pour les moteurs de recherche (SEO) proscrivent l'utilisation d'une description-méta par défaut. Effectivement il peut parfois être préférable de laisser les moteurs de recherche afficher le contenu qui correspond à la requêtre de recherche. Aussi, il est recommendé d'éviter les doublons dans les description-méta pour un même site. La taille optimale devrait être de 150-160 caractères."
       }
-    },
-    "meta_keywords": {
-      "type": "string",
-      "l10n": true,
-      "multiple": false,
-      "label": {
-        "en": "Keywords",
-        "fr": "Mots-clés"
-      },
-      "description": {
-        "en": "Note that for some SEO reason, it might be preferred to leave the default meta-keywords blank. Most search engines will ignore keywords that are not found in the website content (or downright penalize a site's search ranking).",
-        "fr": "Noter que certaines des meilleurs pratiques d'optimisation pour les moteurs de recherche (SEO) proscrivent l'utilisation de mots-clés méta par défaut. Effectivement, plusieurs moteurs vont ignorer les mots-clés qui ne se retrouvent pas dans le contenu d'une page (ou vont carrément pénaliser la position d'un site dans ses résultats)"
-      }
     }
   },
   "forms": {
     "admin": {
       "groups": {
-        "meta_basic": {
+        "meta-basic": {
           "label": {
-            "en": "Meta Data",
-            "fr": "Informations Méta"
+            "en": "Metadata",
+            "fr": "Méta-données"
           },
           "l10n": true,
           "l10n_options": {
@@ -48,13 +35,11 @@
           },
           "properties": [
             "meta_title",
-            "meta_keywords",
             "meta_description"
           ],
           "priority": 100
         }
       }
     }
-  },
-  "default_form": "admin"
+  }
 }

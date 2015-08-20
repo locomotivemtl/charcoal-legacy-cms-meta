@@ -39,8 +39,8 @@
       "groups": {
         "meta-opengraph": {
           "label": {
-            "en": "Meta Information (OpenGraph)",
-            "fr": "Informations Méta (OpenGraph)"
+            "en": "Metadata (OpenGraph)",
+            "fr": "Méta-données (OpenGraph)"
           },
           "properties": [
             "meta_type",
@@ -50,6 +50,5 @@
         }
       }
     }
-  },
-  "default_form": "admin"
+  }
 }

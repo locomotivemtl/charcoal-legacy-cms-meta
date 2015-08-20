@@ -1,7 +1,13 @@
 <?php
 
-use \CMS\Trait_Content_Metadata_Basic as Trait_Metadata_Basic;
-use \CMS\Trait_Content_Metadata_OpenGraph as Trait_Metadata_OpenGraph;
+/**
+ * File: Boilerplate Document Metadata Class
+ *
+ * @copyright 2015 Locomotive
+ * @license   PROPRIETARY
+ * @link      http://charcoal.locomotive.ca
+ * @author    Chauncey McAskill <chauncey@locomotive.ca>
+ */
 
 /**
  * Trait: Boilerplate Document Metadata
@@ -14,55 +20,77 @@ use \CMS\Trait_Content_Metadata_OpenGraph as Trait_Metadata_OpenGraph;
  *
  * @package Boilerplate
  */
-
 trait Boilerplate_Trait_Content_Metadata
 {
-	use Trait_Metadata_Basic,
-		Trait_Metadata_OpenGraph;
-
 	/**
-	 * Get the meta-tags HTML, to put in the header.
+	 * Triggered when invoking inaccessible methods in an object context.
 	 *
-	 * @return string
+	 * This method is used to trigger a recurring operation related to metadata properties.
+	 *
+	 * @param string $name      The name of the method being called,
+	 *                          possibly a metadata property.
+	 * @param string $arguments Optional. An enumerated array containing the
+	 *                          parameters passed to the $name'ed method.
+	 *
+	 * @return mixed
+	 *
+	 * @todo McAskill [2015-08-20]: This doesn't work with Mustache
 	 */
-	public function meta_tags_html()
+	public function __call( $name, $arguments = [] )
 	{
-		$output = $this->as_html_meta_tags();
-
-		if ( method_exists( $this, 'as_html_og_tags' ) ) {
-			$output .= "\n" . $this->as_html_og_tags();
+		if ( 'meta_' === substr( $name, 0, 5 ) && isset( $this->{ $name } ) ) {
+			return $this->get_context_meta_value( $name );
 		}
-
-		return $output;
+		else {
+			return parent::__call( $name, $arguments );
+		}
 	}
 
 	/**
-	 * Retrieve the document's title,
-	 * for the `<title>` element.
+	 * Does the object use basic metadata.
 	 *
-	 * @return string, {@see [1]}.
-	 * @see    Interface_Meta_Basic
+	 * @return boolean
 	 */
+	public static function has_basic_metadata_trait()
+	{
+		return true;
+	}
 
+	/**
+	 * Does the object use OpenGraph metadata.
+	 *
+	 * @return boolean
+	 */
+	public static function has_og_metadata_trait()
+	{
+		return true;
+	}
+
+	/**
+	 * Retrieve the document's title, for the `<title>` element.
+	 *
+	 * @uses self::meta_title()
+	 * @uses self::meta_site_name()
+	 *
+	 * @return string [1]
+	 */
 	public function document_title()
 	{
 		$output  = '';
 		$format  = '%1$s — %2$s';
-		$config  = $this->cfg();
 		$context = $this->context();
+		$banner  = $this->meta_site_name();
 
-		if ( $context->id() && $this::has_metadata_basic_interface( $context ) ) {
-			$output = $context->document_title();
+		if ( $context->id() && method_exists( $context, 'meta_title' ) ) {
+			$output = $context->meta_title();
 		}
 
 		if ( empty( $output ) ) {
-			$output = $config->p('meta_title')->text();
+			$output = $banner;
 		}
 		else {
-			$name = $config->p('meta_title')->text();
-
-			if ( ! empty( $format ) && ! empty( $name ) && $output !== $name ) {
-				$output = sprintf( $format, $name, $output );
+			if ( ! empty( $banner ) && $output !== $banner ) {
+				$output = sprintf( $format, $banner, $output );
 			}
 		}
 
@@ -70,24 +98,20 @@ trait Boilerplate_Trait_Content_Metadata
 	}
 
 	/**
-	 * Retrieve the site's title.
+	 * Alias of self::meta_site_name()
 	 *
-	 * @return string, {@see [2]}.
-	 * @see    Interface_Meta_Basic
+	 * @return string
 	 */
-
 	public function site_name()
 	{
-		return $this->cfg()->meta_title();
+		return $this->meta_site_name();
 	}
 
 	/**
-	 * Retrieve the site's title.
+	 * Retrieve the site's title by accessing the module's config object.
 	 *
-	 * @return string Value of metadata, {@see [1]}.
-	 * @see    Interface_Meta_OpenGraph
+	 * @return string [1]
 	 */
-
 	public function meta_site_name()
 	{
 		return htmlspecialchars( strip_tags( $this->cfg()->meta_title() ), ENT_QUOTES );
@@ -97,24 +121,20 @@ trait Boilerplate_Trait_Content_Metadata
 	 * Retrieve the object's title—as it should appear
 	 * in the graph—for the "og:title" meta-property.
 	 *
-	 * @return string
-	 * @see    Interface_Meta_OpenGraph
+	 * @return string [1]
 	 */
-
 	public function meta_title()
 	{
 		$output = $this->get_context_meta_value( __FUNCTION__ );
 
-		return ( $output === $this->meta_site_name() ? false : $output );
+		return ( $output === $this->meta_site_name() ? '' : $output );
 	}
 
 	/**
 	 * Retrieve the document's description.
 	 *
-	 * @return string
-	 * @see    Interface_Meta_Basic
+	 * @return string [1]
 	 */
-
 	public function meta_description()
 	{
 		return $this->get_context_meta_value( __FUNCTION__ );
@@ -123,10 +143,8 @@ trait Boilerplate_Trait_Content_Metadata
 	/**
 	 * Retrieve the document's keywords.
 	 *
-	 * @return string
-	 * @see    Interface_Meta_Basic
+	 * @return string [1]
 	 */
-
 	public function meta_keywords()
 	{
 		return $this->get_context_meta_value( __FUNCTION__ );
@@ -137,11 +155,20 @@ trait Boilerplate_Trait_Content_Metadata
 	 * your object within the graph—for the "og:image"
 	 * meta-property.
 	 *
-	 * @return string Property_Image
-	 * @see    Interface_Meta_OpenGraph
+	 * @return string [1]
 	 */
-
 	public function meta_image()
+	{
+		return $this->get_context_meta_value( __FUNCTION__ );
+	}
+
+	/**
+	 * Retrieve the document's type,
+	 * for the "og:type" meta-property.
+	 *
+	 * @return string [1]
+	 */
+	public function meta_type()
 	{
 		return $this->get_context_meta_value( __FUNCTION__ );
 	}
@@ -149,10 +176,8 @@ trait Boilerplate_Trait_Content_Metadata
 	/**
 	 * Retrieve document's author's name.
 	 *
-	 * @return string
-	 * @see    Interface_Meta_Basic
+	 * @return string [1]
 	 */
-
 	public function meta_author_name()
 	{
 		return $this->get_context_meta_value( __FUNCTION__ );
@@ -161,66 +186,54 @@ trait Boilerplate_Trait_Content_Metadata
 	/**
 	 * Retrieve document's author's URL.
 	 *
-	 * @return string Property_URL
-	 * @see    Interface_Meta_Basic
+	 * @return string [1]
 	 */
-
 	public function meta_author_url()
 	{
 		return $this->get_context_meta_value( __FUNCTION__ );
 	}
 
 	/**
-	 * Retrieve the object's type,
-	 * for the "og:type" meta-property.
+	 * Retrieve the value of a given metadata property
+	 * from the module's config object.
 	 *
-	 * @return string Property_Choice
-	 * @see    Interface_Meta_OpenGraph
+	 * @return string
 	 */
-
-	public function meta_type()
-	{
-		return $this->get_context_meta_value( __FUNCTION__ );
-	}
-
-	/**
-	 * Retrieve the value of a given meta-property.
-	 *
-	 * @return string Value of metadata, {@see [1]}.
-	 * @see    Interface_Meta_Basic
-	 */
-
 	private function get_config_meta_value( $property_name )
 	{
 		$output = '';
+		$config = $this->cfg();
 
-		$prop = $this->cfg()->p( $property_name );
+		if ( method_exists( $config, $property_name ) ) {
+			$output = $this->cfg()->{ $property_name }();
+		}
+		else {
+			$prop = $this->cfg()->p( $property_name );
 
-		if ( $prop ) {
-			$output = $prop->text();
+			if ( $prop ) {
+				$output = $prop->text();
+			}
 		}
 
-		return $output;
+		return htmlspecialchars( strip_tags( $output ), ENT_QUOTES );
 	}
 
 	/**
 	 * Retrieve the value of a given meta-property.
 	 *
-	 * @return string Value of metadata, {@see [1]}.
-	 * @see    Interface_Meta_Basic
+	 * @return string [1]
 	 */
-
 	private function get_context_meta_value( $property_name )
 	{
 		$output  = '';
 		$context = $this->context();
 
-		if ( $context->id() && $this::has_metadata_basic_interface( $context ) ) {
+		if ( $context->id() && method_exists( $context, $property_name ) ) {
 			$output = $context->{ $property_name }();
 		}
 
 		if ( empty( $output ) ) {
-			$output = $this->get_config_meta_value( $property_name );
+			return $this->get_config_meta_value( $property_name );
 		}
 
 		return htmlspecialchars( strip_tags( $output ), ENT_QUOTES );

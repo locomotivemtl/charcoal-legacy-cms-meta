@@ -3,14 +3,10 @@
 /**
  * File: Basic Metadata Charcoal Interface
  *
- * @copyright   2015 Locomotive
- * @license     LGPL <https://www.gnu.org/licenses/lgpl.html>
- * @link        http://charcoal.locomotive.ca
- *
- * @author      Mathieu Ducharme <mat@locomotive.ca>
- * @author      Chauncey McAskill <chauncey@locomotive.ca>
- *
- * @since       Version 2014-09-28
+ * @copyright 2015 Locomotive
+ * @license   LGPL <https://www.gnu.org/licenses/lgpl.html>
+ * @link      http://charcoal.locomotive.ca
+ * @author    Chauncey McAskill <chauncey@locomotive.ca>
  */
 
 namespace CMS;
@@ -20,39 +16,25 @@ namespace CMS;
  *
  * @package CMS\Objects
  */
-
-interface Interface_Content_Metadata_Basic
+interface Interface_Content_Metadata_Basic extends Interface_Content_Metadata
 {
 	/**
-	 * Generate the HTML meta tags from a Mustache template,
-	 * to put in the `<head>`.
+	 * Retrieve the object's title.
+	 *
+	 * With the Basic Metadata, this should appear
+	 * in the `<title>` element.
+	 *
+	 * With the OpenGraph Metadata—as it should appear
+	 * in the graph—for the "og:title" meta-property.
 	 *
 	 * @return string
 	 */
-	public function as_html_meta_tags();
+	public function meta_title();
 
 	/**
-	 * Retrieve the document's title,
-	 * for the `<title>` element.
+	 * Retrieve the object's description.
 	 *
-	 * @return string Property_String
+	 * @return string
 	 */
-
-	public function document_title();
-
-	/**
-	 * Retrieve the document's description.
-	 *
-	 * @return string Property_String
-	 */
-
 	public function meta_description();
-
-	/**
-	 * Retrieve the document's keywords.
-	 *
-	 * @return string Property_String
-	 */
-
-	public function meta_keywords();
 }

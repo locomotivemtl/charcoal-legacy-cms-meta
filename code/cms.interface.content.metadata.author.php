@@ -3,14 +3,10 @@
 /**
  * File: Authorship Metadata Charcoal Interface
  *
- * @copyright   2015 Locomotive
- * @license     LGPL <https://www.gnu.org/licenses/lgpl.html>
- * @link        http://charcoal.locomotive.ca
- *
- * @author      Mathieu Ducharme <mat@locomotive.ca>
- * @author      Chauncey McAskill <chauncey@locomotive.ca>
- *
- * @since       Version 2015-08-11
+ * @copyright 2015 Locomotive
+ * @license   LGPL <https://www.gnu.org/licenses/lgpl.html>
+ * @link      http://charcoal.locomotive.ca
+ * @author    Chauncey McAskill <chauncey@locomotive.ca>
  */
 
 namespace CMS;
@@ -20,22 +16,19 @@ namespace CMS;
  *
  * @package CMS\Objects
  */
-
-interface Interface_Content_Metadata_Author
+interface Interface_Content_Metadata_Author extends Interface_Content_Metadata
 {
 	/**
-	 * Retrieve document's author's name.
+	 * Retrieve object's author's name.
 	 *
-	 * @return string Property_String
+	 * @return string
 	 */
-
 	public function meta_author_name();
 
 	/**
-	 * Retrieve document's author's URL.
+	 * Retrieve object's author's URL.
 	 *
-	 * @return string Property_URL
+	 * @return string
 	 */
-
 	public function meta_author_url();
 }
