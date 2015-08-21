@@ -29,6 +29,7 @@
           "properties": [
             "meta_keywords"
           ],
+          "hidden": true,
           "priority": 100
         }
       }

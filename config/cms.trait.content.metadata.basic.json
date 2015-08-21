@@ -37,6 +37,7 @@
             "meta_title",
             "meta_description"
           ],
+          "hidden": true,
           "priority": 100
         }
       }

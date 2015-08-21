@@ -33,6 +33,7 @@
             "meta_author_name",
             "meta_author_url"
           ],
+          "hidden": true,
           "priority": 105
         }
       }

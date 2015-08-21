@@ -46,6 +46,7 @@
             "meta_type",
             "meta_image"
           ],
+          "hidden": true,
           "priority": 110
         }
       }
