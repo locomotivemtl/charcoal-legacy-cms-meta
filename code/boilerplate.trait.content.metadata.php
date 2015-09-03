@@ -72,12 +72,13 @@ trait Boilerplate_Trait_Content_Metadata
 	 * @uses self::meta_title()
 	 * @uses self::meta_site_name()
 	 *
+	 * @param string $format The render format for the full title
+	 *
 	 * @return string [1]
 	 */
-	public function document_title()
+	public function document_title( $format = '%1$s — %2$s' )
 	{
 		$output  = '';
-		$format  = '%1$s — %2$s';
 		$context = $this->context();
 		$banner  = $this->meta_site_name();
 
