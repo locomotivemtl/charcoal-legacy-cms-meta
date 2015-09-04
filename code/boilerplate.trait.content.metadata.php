@@ -41,7 +41,7 @@ trait Boilerplate_Trait_Content_Metadata
 		if ( 'meta_' === substr( $name, 0, 5 ) && isset( $this->{ $name } ) ) {
 			return $this->get_context_meta_value( $name );
 		}
-		else {
+		elseif ( is_callable('parent::__call') ) {
 			return parent::__call( $name, $arguments );
 		}
 	}
