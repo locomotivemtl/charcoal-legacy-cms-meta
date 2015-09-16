@@ -129,7 +129,7 @@ trait Boilerplate_Trait_Content_Metadata
 	 */
 	protected function document_title_separator()
 	{
-		return ' &horbar; ';
+		return ' ― ';
 	}
 
 	/**
@@ -263,7 +263,7 @@ trait Boilerplate_Trait_Content_Metadata
 		$output  = '';
 		$context = $this->context();
 
-		if ( $context->id() && method_exists( $context, $property_name ) ) {
+		if ( method_exists( $context, $property_name ) ) {
 			$output = $context->{ $property_name }();
 		}
 
