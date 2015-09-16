@@ -72,17 +72,26 @@ trait Boilerplate_Trait_Content_Metadata
 	 * @uses self::meta_title()
 	 * @uses self::meta_site_name()
 	 *
-	 * @param string $format The render format for the full title
+	 * @param string $format    Optional. A custom format for the document title
+	 * @param string $separator Optional. A custom separator
 	 *
 	 * @return string [1]
 	 */
-	public function document_title( $format = '%1$s — %2$s' )
+	public function document_title( $format = null, $separator = null )
 	{
 		$output  = '';
 		$context = $this->context();
 		$banner  = $this->meta_site_name();
 
-		if ( $context->id() && method_exists( $context, 'meta_title' ) ) {
+		if ( ! isset( $format ) ) {
+			$format = $this->document_title_format();
+		}
+
+		if ( ! isset( $separator ) ) {
+			$separator = $this->document_title_separator();
+		}
+
+		if ( method_exists( $context, 'meta_title' ) ) {
 			$output = $context->meta_title();
 		}
 
@@ -91,11 +100,36 @@ trait Boilerplate_Trait_Content_Metadata
 		}
 		else {
 			if ( ! empty( $banner ) && $output !== $banner ) {
-				$output = sprintf( $format, $banner, $output );
+				$output = sprintf( $format, $separator, $banner, $output );
 			}
 		}
 
 		return htmlspecialchars( strip_tags( $output ), ENT_QUOTES );
+	}
+
+	/**
+	 * Retrieve the text pattern used for the document title
+	 *
+	 * Format:
+	 * • "%1$s" — {@see self::document_title_separator() Separator}
+	 * • "%2$s" — Site Name
+	 * • "%3$s" — Object Title
+	 *
+	 * @return string
+	 */
+	protected function document_title_format()
+	{
+		return '%2$s%1$s%3$s';
+	}
+
+	/**
+	 * Retrieve the optional separator used for the document title
+	 *
+	 * @return string
+	 */
+	protected function document_title_separator()
+	{
+		return ' &horbar; ';
 	}
 
 	/**
