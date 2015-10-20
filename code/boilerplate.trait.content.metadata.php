@@ -104,7 +104,7 @@ trait Boilerplate_Trait_Content_Metadata
 			}
 		}
 
-		return htmlspecialchars( strip_tags( $output ), ENT_QUOTES );
+		return htmlspecialchars( strip_tags( $output ), ENT_HTML5 );
 	}
 
 	/**
